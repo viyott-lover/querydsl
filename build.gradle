@@ -9,12 +9,6 @@ group = 'study'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
-}
-
 repositories {
     mavenCentral()
 }
@@ -24,10 +18,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.8'
     implementation 'com.querydsl:querydsl-jpa'
+    implementation 'com.querydsl:querydsl-apt'
 
-    implementation group: 'com.querydsl', name: 'querydsl-apt'
-    implementation group: 'com.querydsl', name: 'querydsl-codegen'
-    implementation group: 'com.querydsl', name: 'codegen-utils'
+//    implementation group: 'com.querydsl', name: 'querydsl-apt'
+//    implementation group: 'com.querydsl', name: 'querydsl-codegen'
+//    implementation group: 'com.querydsl', name: 'codegen-utils'
 
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.h2database:h2'
@@ -48,6 +43,9 @@ sourceSets {
     main.java.srcDir querydslDir
 }
 configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
     querydsl.extendsFrom compileClasspath
 }
 compileQuerydsl {
